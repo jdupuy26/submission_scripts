@@ -1,0 +1,8 @@
+#BSUB -n in_nprocs
+#BSUB -q in_queue
+#BSUB -G fheitsch_pi
+#BSUB -J in_jobname 
+#BSUB -e err.%J
+#BSUB -o out.%J
+
+mpirun ./athena -r in_restart -i athinput.bgsbu > bgsbu.log

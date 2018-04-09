@@ -1,0 +1,142 @@
+<comment>    
+problem = Bgsbu Barred Spiral Potential (in cylindrical rotating frame)
+author  = John Dupuy
+config  = --with-gas=hydro --with-coord=cylindrical --with-problem=bgsbu --with-eos=isothermal --with-integrator=rk3
+
+<job>
+problem_id      = bar						# problem ID: basename of output filenames
+maxout          = in_maxout			# Output blocks number from 1 -> maxout
+num_domains     = in_numdomains	# number of Domains in Mesh
+
+<output1>
+out_fmt = hst               # History data dump
+dt      = in_dthst          # time increment between outputs
+
+<output2>
+out_fmt = bin               # Binary data dump
+dt      = in_dtbin          # time increment between outputs
+
+<output3>
+out_fmt = rst
+dt			= in_dtrst					# time increment between restarts
+
+<output4>
+name = lv
+id   = lv
+dt   = in_dtlv
+
+<output5> 
+name = sii
+id   = sii
+dt   = in_dtsii
+
+<output6>
+name = otf
+id   = otf
+dt   = in_dtotf
+
+<time>
+cour_no         = in_courno  # The Courant, Friedrichs, & Lewy (CFL) Number
+nlim            = -1         # cycle limit
+tlim            = in_tlim    # time limit [Myr]
+
+<domain1>
+level           = 0         # refinement level this Domain (root=0)
+
+ilog            = in_ilog   # ilog: 1: x1rat = (x1max/x1min)^(1/Nx1), allows for uniform log spacing
+                            # ilog: 0: x1rat is set by user input
+x1rat						= in_x1rat	# ratio of cells for log-grid
+Nx1             = in_nx1    # Number of zones in X1-direction
+x1min           = in_x1min  # minimum value of X1, [pc]
+x1max           = in_x1max  # maximum value of X1, [pc]
+bc_ix1          = 3         # boundary condition flag for inner-I (X1), 2=flowout, 4=periodic
+bc_ox1          = 3         # boundary condition flag for outer-I (X1), 2=flowout, 4=periodic
+
+Nx2             = in_nx2    # Number of zones in X2-direction
+x2min           = in_x2min 	# minimum value of X2, [rad]
+x2max           = in_x2max  # maximum value of X2, [rad]
+bc_ix2          = 4         # boundary condition flag for inner-J (X2), 2=flowout, 4=periodic
+bc_ox2          = 4         # boundary condition flag for outer-J (X2), 2=flowout, 4=periodic
+
+Nx3             = 1         # Number of zones in X3-direction
+x3min           = 0.0       # minimum value of X3
+x3max           = 0.0       # maximum value of X3
+
+
+NGrid_x1	= in_ng1         # number of grids in x1-direction
+NGrid_x2	= in_ng2   			 # number of grids in x2-direction
+
+
+<problem>
+mu            = in_mu       # Mean molecular weight
+gamma					= in_gamma		# ratio of specific heats
+Pgas0					= in_pgas0 		# Ambient surface pressure [M_sun/(pc*Myr^2)]
+scaleh        = in_scaleh   # Scale height [pc]
+da						= in_da       # ambient density [M_sun/pc^2] 
+aval					= in_aval			# semimajor axis of potential bar [pc]  
+iso_csound		= 10.22				# [10 [km/s] -> 10.22 [pc/Myr] ]
+ieta1         = in_ieta1    # ieta1 parameter for dual energy 
+ieta2         = in_ieta2    # ieta2 parameter for dual energy
+
+# Bar parameters
+ibar          = in_ibar     # 1: on, 0: off
+omg						= in_omg		  # Bar rotation [1/Myr]
+Nq						= in_Nq				# size of q array
+qend					= in_qend			# ending bar parameters
+tend					= in_tend			# time limit for q variation [Myr]
+tstart				= in_tstart		# time start for q variation [Myr]
+
+# HVC Parameters
+ihvc          = in_ihvc     # 1: random selection, 0: rhvc and rpos set by values below
+irand         = -20         # random number seed (if ihvc == 1)
+rhvcmin       = 100         # lower bound on HVC extent [pc]
+rhvcmax       = 600         # upper bound on HVC extent [pc]
+rposmin       = 200         # lower bound for HVC pos [pc]
+rposmax       = 3000        # upper bound for HVC pos [pc]
+angmin        = 0           # lower bound for initial HVC ang [rad]
+angmax        = 6.283       # upper bound for initial HVC ang [rad] 
+
+mhvc          = in_mhvc     # Mass of HVC [M_sun]
+thvcs         = in_thvcs    # Start time of collision [Myr]
+thvce         = in_thvce    # End time of collision [Myr] 
+
+rhvc          = in_rhvc     # extent of HVC (if ihvc == 0) [pc]
+rpos          = in_rpos     # position of HVC (if ihvc == 0) [pc]
+ahvc          = in_ahvc     # initial HVC ang [rad]
+facvhvc				= in_facvhvc	# factor for angular velocity of hvc
+
+  # HVC Analysis
+rcirc         = in_rcirc    # extent of circle to compute total mass w/in at bar edges
+Nang          = in_Nang 
+
+# Metallicity variables 
+dm            = in_dm       # metallicity gradient [dex kpc^{-1}]
+lm0           = in_lm0      # log(met) at R=0
+imet          = in_imet     # 1: metallicity grad, 0: const met set by lm0
+Ncol					= in_Ncol			# column density for self-shielding [1/cm^2] 
+
+ # LV OTF analysis
+Rsun          = in_rsun   # Position of sun [pc]
+vsun          = in_vsun   # orbital velocity of sun [pc/Myr]
+p0            = in_p0     # Sun's angle with bar major axis [deg]
+minl          = in_minl   # minimum longitude for rays [deg]
+maxl          = in_maxl   # maximum longitude for rays [deg]
+dl            = in_dl     # spacing of rays [deg]
+dvscan        = in_dvscan # spacing of velocity bins [pc/Myr]
+dr            = in_dr     # spacing of ray points [pc]
+
+  # SII OTF Analysis 
+isii         =  in_isii     # switch for intensity measure, 0: 6717 line & 6731 line, 
+                            #     1: simple div_v intensity measure
+    # Define the cartesian overlay
+minx         = in_minx  # [pc]
+maxx         = in_maxx  # [pc]
+dx           = in_dx    # [pc]
+miny         = in_miny  # [pc]
+maxy         = in_maxy  # [pc]
+dy           = in_dy    # [pc] 
+
+# Cooltable location
+cooltable     = in_cooltable 
+# SIIemission table location
+siitable      = in_siitable 
