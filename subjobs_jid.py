@@ -96,6 +96,7 @@ def main():
     Nq          = '30'
     qstart      = '0.0' # starting bar strength
     qend        = '1.0' # ending bar strength
+    ax_rat      = '0.4'
     tstart      = '5'
     tend        = '155'
 
@@ -231,6 +232,7 @@ def main():
                                 line = line.replace('in_Nq', Nq)
                                 line = line.replace('in_qstart', qstart)
                                 line = line.replace('in_qend', qend)
+                                line = line.replace('in_ax_rat',ax_rat) 
                                 line = line.replace('in_tend', tend)
                                 line = line.replace('in_tstart', tstart)
                                     # HVC params (looped over params)

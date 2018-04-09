@@ -82,8 +82,9 @@ iso_csound		= 10.22				# [10 [km/s] -> 10.22 [pc/Myr] ]
 ibar          = in_ibar     # 1: on, 0: off
 omg						= in_omg		  # Bar rotation [1/Myr]
 Nq						= in_Nq				# size of q array
-qend					= in_qend			# ending bar strength 
+qend					= in_qend			# ending bar strength
 qstart        = in_qstart   # starting bar strength
+ax_rat        = in_ax_rat   # Axial ratio
 tend					= in_tend			# time limit for q variation [Myr]
 tstart				= in_tstart		# time start for q variation [Myr]
 
