@@ -70,7 +70,6 @@ NGrid_x2	= in_ng2   			 # number of grids in x2-direction
 <problem>
 mu            = in_mu       # Mean molecular weight
 gamma					= in_gamma		# ratio of specific heats
-Pgas0					= in_pgas0 		# Ambient surface pressure [M_sun/(pc*Myr^2)]
 scaleh        = in_scaleh   # Scale height [pc]
 da						= in_da       # ambient density [M_sun/pc^2] 
 aval					= in_aval			# semimajor axis of potential bar [pc]  

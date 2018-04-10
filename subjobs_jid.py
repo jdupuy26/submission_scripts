@@ -55,14 +55,14 @@ def main():
     # <output>
     maxout      = '6'
     dtbin       = '10.0'
-    dthst       = '1'
+    dthst       = '5'
     dtrst       = '200'
     dtlv        = '10.0'
     dtsii       = '10.0'
     dtotf       = '2.5'
 
     # <time>
-    CourNo      = '0.50'
+    CourNo      = '0.30'
     tlim        = '1000'
 
     # <domain1>
@@ -82,7 +82,6 @@ def main():
     # <problem>
     mu          = '1.0'
     gamma       = '1.666666667'
-    Pgas0       = '577.899'
     scaleh      = '300.0'
     da          = '10.0'
     aval        = '1200.0'
@@ -220,7 +219,6 @@ def main():
                                 # <problem>
                                 line = line.replace('in_mu',mu)
                                 line = line.replace('in_gamma',gamma)
-                                line = line.replace('in_pgas0',Pgas0)
                                 line = line.replace('in_scaleh',scaleh)
                                 line = line.replace('in_da',da)
                                 line = line.replace('in_aval',aval)
