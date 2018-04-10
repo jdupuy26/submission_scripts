@@ -30,7 +30,7 @@ def main():
     # Machine specific parameters 
     if 'dogwood' in comp:     # if using dogwood
         base    = '/nas/longleaf/home/jdupuy26/'
-        restart = base+'restart_files/jidbar.0001.rst'
+        restart = base+'restart_jid/jidbar.0003.rst'
         queue   = '528_queue'
             # Cooltable location
         cooltable = base+'gainloss.dmp'
@@ -39,7 +39,7 @@ def main():
 
     elif 'killdevil' in comp: # if using killdevil
         base    = '/nas02/home/j/d/jdupuy26/'
-        restart = base+'restart_files/jidbar.0001.rst' 
+        restart = base+'restart_jid/jidbar.0003.rst' 
         queue   = 'mpi'
             # Cooltable location
         cooltable = base+'gainloss.dmp'
@@ -104,10 +104,13 @@ def main():
     thvcs       = '305'
     thvce       = ['325']
     mhvc        = ['0']
-    mhvc        = ['1e6','1e7','5e7']
-    rhvc        = ['100','500','1000']
-    facvhvc     = ['1.0']
-    rpos        = ['6000','8000','10000']
+    mhvc        = ['1e7']
+    rhvc        = ['500']
+    rpos        = ['1000']
+    ahvc        = ['0.0']
+    rhvc        = ['500','1000']
+    facvhvc     = ['-1.0']
+    rpos        = ['5500','6500','7500']
     ahvc        = ['0.0','1.5708']
     
         # HVC Analysis
@@ -118,7 +121,7 @@ def main():
     dm          = '-0.05'
     lm0         = '0.45'
     imet        = '1'
-    Ncol        = '1.e18'
+    Ncol        = '2.e18'
         # LV OTF analysis
     Rsun        = '8000'
     Rand        = '7.78e5'
@@ -127,7 +130,7 @@ def main():
     nlong       = '700'
     nobs        = '4'
     dvscan      = '1.5'
-    dr          = '1.0'
+    dr          = '5.0'
 
         # SII Emission analysis 
     isii        = '0'
@@ -162,7 +165,7 @@ def main():
                             # write input file 
                                 # make this computer specific 
                             if 'dogwood' in comp:
-                                f1 = open('dogwood.slurm_in'    , 'r')
+                                f1 = open('dogwood.jid_in'    , 'r')
                                 f2 = open(rundir+'dogwood.sh', 'w')
                                 for line in f1:
                                     line = line.replace('in_nprocs' , str(procpjob))
@@ -174,7 +177,7 @@ def main():
                                 f2.close()
                             
                             elif 'killdevil' in comp:
-                                f1 = open('killdevil.lsf_in'    , 'r')
+                                f1 = open('killdevil.jid_in'    , 'r')
                                 f2 = open(rundir+'killdevil.lsf', 'w')
                                 for line in f1:
                                     line = line.replace('in_nprocs' , str(procpjob))
@@ -187,8 +190,8 @@ def main():
 
 
                             # write athinput
-                            f1 = open('athinput.bgsbu_in'   , 'r')
-                            f2 = open(rundir + 'athinput.bgsbu', 'w')
+                            f1 = open('athinput.jid_in'   , 'r')
+                            f2 = open(rundir + 'athinput.jid', 'w')
                             for line in f1:
                                 # <job>
                                 line = line.replace('in_maxout', maxout)
@@ -252,6 +255,7 @@ def main():
                                 line = line.replace('in_Ncol',Ncol)
                                     # LV OTF analysis
                                 line = line.replace('in_rsun',Rsun)
+                                line = line.replace('in_rand',Rand)
                                 line = line.replace('in_vsun',vsun)
                                 line = line.replace('in_p0',p0)
                                 line = line.replace('in_nlong',nlong)

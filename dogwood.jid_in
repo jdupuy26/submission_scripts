@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -p in_queue
 #SBATCH -n in_nprocs
-#SBATCH -t 0-10:00
+#SBATCH -t 0-36:00
 #SBATCH -J in_jobname
 #SBATCH -o %J.out
 #SBATCH -e %J.err
